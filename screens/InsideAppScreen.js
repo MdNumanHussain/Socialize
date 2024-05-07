@@ -1,23 +1,96 @@
 import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Using MaterialCommunityIcons as an example
 
-export default function InsideAppScreen() {
+function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.message}>You are inside the app!</Text>
+    <View style={styles.screen}>
+      <Text style={styles.message}>Home Screen</Text>
     </View>
   );
 }
 
+function ExploreScreen() {
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.message}>Explore Screen</Text>
+    </View>
+  );
+}
+
+function SocialScreen() {
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.message}>Social Screen</Text>
+    </View>
+  );
+}
+
+function ChatScreen() {
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.message}>Chat Screen</Text>
+    </View>
+  );
+}
+
+function MenuScreen() {
+  return (
+    <View style={styles.screen}>
+      <Text style={styles.message}>Menu Screen</Text>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function InsideAppScreen() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Home') {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Explore') {
+            iconName = focused ? 'magnify' : 'magnify';
+          } else if (route.name === 'Social') {
+            iconName = focused ? 'forum' : 'forum-outline';
+          } else if (route.name === 'Chat') {
+            iconName = focused ? 'message-text' : 'message-text-outline';
+          } else if (route.name === 'Menu') {
+            iconName = focused ? 'menu' : 'menu';
+          }
+
+          // You can return any component that you like here!
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
+      }}
+    >
+      <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Explore" component={ExploreScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Social" component={SocialScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Menu" component={MenuScreen} options={{ headerShown: false }} />
+    </Tab.Navigator>
+  );
+}
+
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'black',
   },
   message: {
-    fontSize: 24,
+    fontSize: 20,
     color: 'white',
   },
 });

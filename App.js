@@ -15,11 +15,10 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} options={{ headerTitle: 'Login' }} />
-        <Stack.Screen name="ForgetPasswordScreen" component={ForgetPassword} options={{ headerTitle: 'ForgetPassword' }} />
+        <Stack.Screen name="ForgetPasswordScreen" component={ForgetPassword} options={{ headerTitle: 'Forget Password' }} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{ headerTitle: 'Register' }} />
-        <Stack.Screen name="InsideAppScreen" component={InsideAppScreen} options={{ headerTitle: 'InsideAppScreen' }} />
+        <Stack.Screen name="InsideAppScreen" component={InsideAppScreen} options={{ headerShown: false }} />
         {/* Add other screens here */}
-        
       </Stack.Navigator>
     </NavigationContainer>
   );
